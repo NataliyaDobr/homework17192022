@@ -153,3 +153,33 @@
 # draw_field(field)
 
 # 4. Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных.
+def compress_algorithm(str_input):
+    str_output=""
+    i=0
+    while i < len(str_input):
+        cnt = 1
+        while i+1<len(str_input) and str_input[i]==str_input[i+1]:
+            cnt=cnt+1
+            i=i+1
+        str_output+=str(cnt)+str_input[i]
+        i+=1
+    return(str_output)
+
+str_new = 'aaabbbbbcccccddddaaa'
+print(compress_algorithm(str_new))
+str_old = compress_algorithm(str_new)
+
+def decompress_algoritm(s):
+    str_original = ""
+    i=0
+    while i < len(s):
+        cnt = int(s[i])
+        for j in range(1,cnt+1):
+            str_original+=str(cnt)
+        i=i+1
+        str_original+=s[i]
+        i+=1
+    return(str_original)
+
+print (decompress_algoritm(str_old))
+
